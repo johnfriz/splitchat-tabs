@@ -52,6 +52,34 @@ export const mockData = {
       notifications: true,
       language: "en",
     },
+    profile: {
+      name: "John Doe",
+      email: "john.doe@example.com",
+      avatar: "/placeholder.svg",
+      role: "Administrator",
+      joinDate: "January 15, 2023",
+    },
+    security: {
+      twoFactorEnabled: true,
+      loginNotifications: false,
+      deviceHistory: [
+        {
+          device: "MacBook Pro",
+          lastAccess: "Today at 10:45 AM",
+          location: "San Francisco, CA",
+        },
+        {
+          device: "iPhone 13",
+          lastAccess: "Yesterday at 8:30 PM",
+          location: "San Francisco, CA",
+        },
+        {
+          device: "Windows PC",
+          lastAccess: "Feb 18, 2024 at 3:15 PM",
+          location: "New York, NY",
+        },
+      ],
+    },
   },
 };
 
@@ -60,6 +88,8 @@ import StatsCard from "../components/StatsCard";
 import ActivityList from "../components/ActivityList";
 import MessageList from "../components/MessageList";
 import PreferencesForm from "../components/PreferencesForm";
+import ProfileInfo from "../components/ProfileInfo";
+import SecuritySettings from "../components/SecuritySettings";
 
 export const navigationConfig: NavItem[] = [
   {
@@ -140,7 +170,22 @@ export const navigationConfig: NavItem[] = [
       {
         title: "Profile",
         id: "profile",
-        content: [],
+        content: [
+          {
+            component: ProfileInfo,
+            config: {
+              type: "profile",
+              data: mockData.settings.profile,
+            },
+          },
+          {
+            component: SecuritySettings,
+            config: {
+              type: "security",
+              data: mockData.settings.security,
+            },
+          },
+        ],
       },
     ],
   },
